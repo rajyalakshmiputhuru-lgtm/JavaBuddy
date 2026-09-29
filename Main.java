@@ -6,6 +6,17 @@ public class Main {
     static int totalSolved = 0;
     static int totalCorrect = 0;
 
+    static int safeNextInt() {
+        while (!sc.hasNextInt()) {
+            if (!sc.hasNext()) {
+                return -1;
+            }
+            sc.next();
+            System.out.print("Invalid input! Please enter a valid number: ");
+        }
+        return sc.nextInt();
+    }
+
     public static void main(String[] args) {
 
         while (true) {
@@ -24,7 +35,7 @@ public class Main {
             System.out.println("==========================================");
 
             System.out.print("Enter your choice: ");
-            int choice = sc.nextInt();
+            int choice = safeNextInt();
 
             if (choice == 1) {
                 learnJava();
@@ -68,7 +79,7 @@ public class Main {
             System.out.println("13. Back");
 
             System.out.print("Choose topic: ");
-            int n = sc.nextInt();
+            int n = safeNextInt();
 
             if (n == 1) {
                 System.out.println("\nVARIABLES");
@@ -201,7 +212,7 @@ public class Main {
             System.out.println("9. Back");
 
             System.out.print("Choose: ");
-            int n = sc.nextInt();
+            int n = safeNextInt();
 
             if (n == 1) variablesPractice();
             else if (n == 2) operatorsPractice();
@@ -231,7 +242,7 @@ public class Main {
         System.out.println("4. " + d);
 
         System.out.print("Your answer: ");
-        int answer = sc.nextInt();
+        int answer = safeNextInt();
 
         totalSolved++;
 
@@ -283,7 +294,7 @@ public class Main {
 
         score += question(
                 "What is 10 % 3?",
-                "0", "1", "2", "3", 3);
+                "0", "1", "2", "3", 2);
 
         score += question(
                 "Which operator checks equality?",
@@ -480,7 +491,7 @@ public class Main {
             System.out.println("11. Back");
 
             System.out.print("Choose: ");
-            int n = sc.nextInt();
+            int n = safeNextInt();
 
             if (n == 1) arrayDSA();
             else if (n == 2) stringDSA();
@@ -507,17 +518,27 @@ public class Main {
         System.out.println("5. Second Largest");
 
         System.out.print("Choose: ");
-        int n = sc.nextInt();
+        int n = safeNextInt();
+
+        if (n < 1 || n > 5) {
+            System.out.println("Invalid choice!");
+            return;
+        }
 
         System.out.print("Enter size: ");
-        int size = sc.nextInt();
+        int size = safeNextInt();
+
+        if (size <= 0) {
+            System.out.println("Size must be greater than 0.");
+            return;
+        }
 
         int[] a = new int[size];
 
         System.out.println("Enter elements:");
 
         for (int i = 0; i < size; i++) {
-            a[i] = sc.nextInt();
+            a[i] = safeNextInt();
         }
 
         if (n == 1) {
@@ -570,9 +591,30 @@ public class Main {
 
         else if (n == 5) {
 
+            if (size < 2) {
+                System.out.println("At least 2 elements are required to find the second largest.");
+                return;
+            }
+
             Arrays.sort(a);
 
-            System.out.println("Second Largest = " + a[size - 2]);
+            int largest = a[size - 1];
+            int second = Integer.MIN_VALUE;
+            boolean found = false;
+
+            for (int i = size - 2; i >= 0; i--) {
+                if (a[i] != largest) {
+                    second = a[i];
+                    found = true;
+                    break;
+                }
+            }
+
+            if (found) {
+                System.out.println("Second Largest = " + second);
+            } else {
+                System.out.println("All elements are equal (" + largest + "); no distinct second largest element.");
+            }
         }
     }
 
@@ -588,7 +630,12 @@ public class Main {
         System.out.println("5. Anagram Check");
 
         System.out.print("Choose: ");
-        int n = sc.nextInt();
+        int n = safeNextInt();
+
+        if (n < 1 || n > 5) {
+            System.out.println("Invalid choice!");
+            return;
+        }
 
         sc.nextLine();
 
@@ -669,21 +716,31 @@ public class Main {
         System.out.println("2. Binary Search");
 
         System.out.print("Choose: ");
-        int n = sc.nextInt();
+        int n = safeNextInt();
+
+        if (n < 1 || n > 2) {
+            System.out.println("Invalid choice!");
+            return;
+        }
 
         System.out.print("Enter size: ");
-        int size = sc.nextInt();
+        int size = safeNextInt();
+
+        if (size <= 0) {
+            System.out.println("Size must be greater than 0.");
+            return;
+        }
 
         int[] a = new int[size];
 
         System.out.println("Enter elements:");
 
         for (int i = 0; i < size; i++) {
-            a[i] = sc.nextInt();
+            a[i] = safeNextInt();
         }
 
         System.out.print("Enter target: ");
-        int target = sc.nextInt();
+        int target = safeNextInt();
 
         if (n == 1) {
 
@@ -740,17 +797,27 @@ public class Main {
         System.out.println("2. Built-in Sort");
 
         System.out.print("Choose: ");
-        int n = sc.nextInt();
+        int n = safeNextInt();
+
+        if (n < 1 || n > 2) {
+            System.out.println("Invalid choice!");
+            return;
+        }
 
         System.out.print("Enter size: ");
-        int size = sc.nextInt();
+        int size = safeNextInt();
+
+        if (size <= 0) {
+            System.out.println("Size must be greater than 0.");
+            return;
+        }
 
         int[] a = new int[size];
 
         System.out.println("Enter elements:");
 
         for (int i = 0; i < size; i++) {
-            a[i] = sc.nextInt();
+            a[i] = safeNextInt();
         }
 
         if (n == 1) {
@@ -789,10 +856,20 @@ public class Main {
         System.out.println("2. Fibonacci");
 
         System.out.print("Choose: ");
-        int n = sc.nextInt();
+        int n = safeNextInt();
+
+        if (n < 1 || n > 2) {
+            System.out.println("Invalid choice!");
+            return;
+        }
 
         System.out.print("Enter number: ");
-        int value = sc.nextInt();
+        int value = safeNextInt();
+
+        if (value < 0) {
+            System.out.println("Please enter a non-negative number.");
+            return;
+        }
 
         if (n == 1) {
             System.out.println("Factorial = " + factorial(value));
@@ -805,7 +882,7 @@ public class Main {
 
     static int factorial(int n) {
 
-        if (n == 0 || n == 1)
+        if (n <= 1)
             return 1;
 
         return n * factorial(n - 1);
@@ -814,7 +891,7 @@ public class Main {
     static int fibonacci(int n) {
 
         if (n <= 1)
-            return n;
+            return Math.max(0, n);
 
         return fibonacci(n - 1) + fibonacci(n - 2);
     }
@@ -832,12 +909,12 @@ public class Main {
             System.out.println("4. Back");
 
             System.out.print("Choose: ");
-            int n = sc.nextInt();
+            int n = safeNextInt();
 
             if (n == 1) {
 
                 System.out.print("Enter value: ");
-                list.add(sc.nextInt());
+                list.add(safeNextInt());
 
             }
 
@@ -857,6 +934,10 @@ public class Main {
             else if (n == 4) {
                 break;
             }
+
+            else {
+                System.out.println("Invalid choice!");
+            }
         }
     }
 
@@ -874,12 +955,12 @@ public class Main {
             System.out.println("5. Back");
 
             System.out.print("Choose: ");
-            int n = sc.nextInt();
+            int n = safeNextInt();
 
             if (n == 1) {
 
                 System.out.print("Enter value: ");
-                stack.push(sc.nextInt());
+                stack.push(safeNextInt());
             }
 
             else if (n == 2) {
@@ -905,6 +986,10 @@ public class Main {
             else if (n == 5) {
                 break;
             }
+
+            else {
+                System.out.println("Invalid choice!");
+            }
         }
     }
 
@@ -922,12 +1007,12 @@ public class Main {
             System.out.println("5. Back");
 
             System.out.print("Choose: ");
-            int n = sc.nextInt();
+            int n = safeNextInt();
 
             if (n == 1) {
 
                 System.out.print("Enter value: ");
-                queue.add(sc.nextInt());
+                queue.add(safeNextInt());
             }
 
             else if (n == 2) {
@@ -953,6 +1038,10 @@ public class Main {
             else if (n == 5) {
                 break;
             }
+
+            else {
+                System.out.println("Invalid choice!");
+            }
         }
     }
 
@@ -964,7 +1053,12 @@ public class Main {
         System.out.println("3. Postorder");
 
         System.out.print("Choose: ");
-        int n = sc.nextInt();
+        int n = safeNextInt();
+
+        if (n < 1 || n > 3) {
+            System.out.println("Invalid choice!");
+            return;
+        }
 
         Node root = new Node(1);
 
@@ -1078,7 +1172,7 @@ public class Main {
             System.out.println("13. Back");
 
             System.out.print("Choose problem: ");
-            int n = sc.nextInt();
+            int n = safeNextInt();
 
             if (n == 1) primeProblem();
             else if (n == 2) palindromeProblem();
@@ -1114,7 +1208,7 @@ public class Main {
     static void primeProblem() {
 
         System.out.print("\nEnter number: ");
-        int n = sc.nextInt();
+        int n = safeNextInt();
 
         if (isPrime(n))
             System.out.println("Prime Number");
@@ -1125,9 +1219,10 @@ public class Main {
     static void palindromeProblem() {
 
         System.out.print("\nEnter number: ");
-        int n = sc.nextInt();
+        int n = safeNextInt();
 
         int original = n;
+        n = Math.abs(n);
         int reverse = 0;
 
         while (n > 0) {
@@ -1137,7 +1232,7 @@ public class Main {
             n = n / 10;
         }
 
-        if (original == reverse)
+        if (original >= 0 && original == reverse)
             System.out.println("Palindrome");
         else
             System.out.println("Not Palindrome");
@@ -1146,15 +1241,24 @@ public class Main {
     static void armstrongProblem() {
 
         System.out.print("\nEnter number: ");
-        int n = sc.nextInt();
+        int n = safeNextInt();
+
+        if (n < 0) {
+            System.out.println("Not Armstrong");
+            return;
+        }
 
         int original = n;
         int temp = n;
         int digits = 0;
 
-        while (temp > 0) {
-            digits++;
-            temp /= 10;
+        if (temp == 0) {
+            digits = 1;
+        } else {
+            while (temp > 0) {
+                digits++;
+                temp /= 10;
+            }
         }
 
         temp = n;
@@ -1163,7 +1267,7 @@ public class Main {
         while (temp > 0) {
 
             int digit = temp % 10;
-            sum += Math.pow(digit, digits);
+            sum += Math.round(Math.pow(digit, digits));
             temp /= 10;
         }
 
@@ -1176,7 +1280,7 @@ public class Main {
     static void fibonacciProblem() {
 
         System.out.print("\nEnter number of terms: ");
-        int n = sc.nextInt();
+        int n = safeNextInt();
 
         int a = 0;
         int b = 1;
@@ -1198,7 +1302,12 @@ public class Main {
     static void factorialProblem() {
 
         System.out.print("\nEnter number: ");
-        int n = sc.nextInt();
+        int n = safeNextInt();
+
+        if (n < 0) {
+            System.out.println("Factorial is not defined for negative numbers.");
+            return;
+        }
 
         long fact = 1;
 
@@ -1212,13 +1321,13 @@ public class Main {
     static void gcdLcmProblem() {
 
         System.out.print("\nEnter first number: ");
-        int a = sc.nextInt();
+        int a = safeNextInt();
 
         System.out.print("Enter second number: ");
-        int b = sc.nextInt();
+        int b = safeNextInt();
 
-        int x = a;
-        int y = b;
+        int x = Math.abs(a);
+        int y = Math.abs(b);
 
         while (y != 0) {
 
@@ -1228,7 +1337,7 @@ public class Main {
         }
 
         int gcd = x;
-        int lcm = (a * b) / gcd;
+        long lcm = (gcd == 0) ? 0 : ((long) Math.abs(a) * Math.abs(b)) / gcd;
 
         System.out.println("GCD = " + gcd);
         System.out.println("LCM = " + lcm);
@@ -1237,8 +1346,10 @@ public class Main {
     static void reverseProblem() {
 
         System.out.print("\nEnter number: ");
-        int n = sc.nextInt();
+        int n = safeNextInt();
 
+        boolean isNegative = n < 0;
+        n = Math.abs(n);
         int reverse = 0;
 
         while (n > 0) {
@@ -1248,14 +1359,19 @@ public class Main {
             n /= 10;
         }
 
+        if (isNegative) {
+            reverse = -reverse;
+        }
+
         System.out.println("Reverse = " + reverse);
     }
 
     static void digitSumProblem() {
 
         System.out.print("\nEnter number: ");
-        int n = sc.nextInt();
+        int n = safeNextInt();
 
+        n = Math.abs(n);
         int sum = 0;
 
         while (n > 0) {
@@ -1270,13 +1386,14 @@ public class Main {
     static void digitCountProblem() {
 
         System.out.print("\nEnter number: ");
-        int n = sc.nextInt();
+        int n = safeNextInt();
 
         if (n == 0) {
             System.out.println("Digits = 1");
             return;
         }
 
+        n = Math.abs(n);
         int count = 0;
 
         while (n != 0) {
@@ -1291,10 +1408,16 @@ public class Main {
     static void primeRangeProblem() {
 
         System.out.print("\nEnter start: ");
-        int start = sc.nextInt();
+        int start = safeNextInt();
 
         System.out.print("Enter end: ");
-        int end = sc.nextInt();
+        int end = safeNextInt();
+
+        if (start > end) {
+            int temp = start;
+            start = end;
+            end = temp;
+        }
 
         System.out.print("Prime Numbers: ");
 
@@ -1316,8 +1439,11 @@ public class Main {
 
         for (int i = 0; i < number.length(); i++) {
 
-            int digit = number.charAt(i) - '0';
-            frequency[digit]++;
+            char ch = number.charAt(i);
+            if (Character.isDigit(ch)) {
+                int digit = ch - '0';
+                frequency[digit]++;
+            }
         }
 
         for (int i = 0; i < 10; i++) {
@@ -1330,7 +1456,7 @@ public class Main {
     static void consecutivePrimeSum() {
 
         System.out.print("\nEnter number: ");
-        int n = sc.nextInt();
+        int n = safeNextInt();
 
         int sum = 0;
         int count = 0;
@@ -1432,7 +1558,7 @@ public class Main {
 
         score += question(
                 "What is 10 % 3?",
-                "0", "1", "2", "3", 3);
+                "0", "1", "2", "3", 2);
 
         score += question(
                 "Which method gives String length?",
