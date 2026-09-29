@@ -1,6 +1,12 @@
-﻿# JavaBuddy - Interactive Java Learning & Coding CLI Platform
+# JavaBuddy - Interactive Java Learning & Coding CLI Platform
 
-> An offline, menu-driven Java console application designed for students and beginners to learn core Java concepts, practice MCQs, master Data Structures & Algorithms, solve TCS-style placement coding challenges, and assess readiness with timed mock tests.
+> An offline, menu-driven Java console application and interactive live web demo designed for students and beginners to learn core Java concepts, practice MCQs, master Data Structures & Algorithms, solve TCS-style placement coding challenges, and assess readiness with timed mock tests.
+
+[![Live Demo](https://img.shields.io/badge/Live%20Demo-Open%20JavaBuddy-brightgreen?style=for-the-badge&logo=googlechrome&logoColor=white)](https://rajyalakshmiputhuru-lgtm.github.io/JavaBuddy/)
+[![GitHub Repo](https://img.shields.io/badge/GitHub-Repository-blue?style=for-the-badge&logo=github)](https://github.com/rajyalakshmiputhuru-lgtm/JavaBuddy)
+
+🌐 **Live Web Demo**: [https://rajyalakshmiputhuru-lgtm.github.io/JavaBuddy/](https://rajyalakshmiputhuru-lgtm.github.io/JavaBuddy/)  
+*(Runs directly in your browser with zero installations, no command prompt, and no login required!)*
 
 ---
 
